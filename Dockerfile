@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 USER appuser
 WORKDIR /home/appuser
 
-RUN git clone https://github.com/mighty-mass/sturdy-guacamole.git app
+RUN git clone https://github.com/mighty-mass/glowing-train.git app
 
 ENV VIRTUAL_ENV=/home/appuser/venv
 RUN virtualenv ${VIRTUAL_ENV}
