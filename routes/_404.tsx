@@ -13,11 +13,11 @@ export default function Error404() {
             src="/not-found.svg"
             width="400"
             height="400"
-            alt="the Fresh logo: a sliced lemon dripping with juice"
+            alt="No Money logo: a man cry without money in his pockets"
           />
-          <h1 class="text-6xl font-bold text-[#000000]">404 - Page not found</h1>
+          <h1 class="text-6xl font-bold text-[#000000]">404 - Money not found</h1>
           <p class="my-4 text-2xl text-[#000000]">
-            The page you were looking for doesn't exist.
+            The wallet you were looking for is empty.
           </p>
           <button 
             onclick="window.location.href='/'" 
