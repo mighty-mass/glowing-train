@@ -1,7 +1,7 @@
-import { h, JSX } from "preact";
 import { AppProps } from "$fresh/server.ts";
 
-export default function App({ Component }: AppProps): JSX.Element {
+
+export default function App({ Component }: AppProps) {
   return (
     <html>
       <head>

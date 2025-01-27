@@ -1,14 +1,12 @@
 import { HandlerContext } from "$fresh/server.ts";
-import { getXataClient } from '../../islands/xata.ts'
+import { getXataClient } from '../../xata.ts'
 import { createHmac } from "node:crypto";
 
 
 
 function hashPassword(password) {
   let hashedPassword = createHmac('sha512', password).digest('hex');
-
   return hashedPassword.toString();
-
 }
 
 

@@ -467,7 +467,7 @@ const DatabaseClient = buildClient();
 
 const defaultOptions = {
   databaseURL: Deno.env.get("XATA_DATABASE_URL"),
-  apiKey: XDeno.env.get("XATA_API_KEY") 
+  apiKey: Deno.env.get("XATA_API_KEY") 
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {

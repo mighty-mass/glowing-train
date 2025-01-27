@@ -5,10 +5,11 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_login from "./routes/api/login.ts";
+import * as $api_transaction from "./routes/api/transaction.ts";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $middleware from "./routes/middleware.tsx";
-import * as $xata from "./islands/xata.ts";
+import * as $AddTransaction from "./islands/AddTransaction.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -16,12 +17,13 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/login.ts": $api_login,
+    "./routes/api/transaction.ts": $api_transaction,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/middleware.tsx": $middleware,
   },
   islands: {
-    "./islands/xata.ts": $xata,
+    "./islands/AddTransaction.tsx": $AddTransaction,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

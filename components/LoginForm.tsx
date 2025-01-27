@@ -1,5 +1,3 @@
-import { h } from "preact";
-
 export default function LoginForm() {
   return (
     <form action="/api/login" method="post" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
