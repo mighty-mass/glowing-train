@@ -466,8 +466,8 @@ export type DatabaseSchema = {
 const DatabaseClient = buildClient();
 
 const defaultOptions = {
-  databaseURL:
-    "https://Marco-Massetti-s-workspace-m4tj2d.eu-west-1.xata.sh/db/glowing-train",
+  databaseURL: Deno.env.get("XATA_DATABASE_URL"),
+  apiKey: XDeno.env.get("XATA_API_KEY") 
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {
