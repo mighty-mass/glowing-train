@@ -1,2 +1,41 @@
-if(!self.define){let e,t={};const s=(s,n)=>(s=new URL(s+".js",n).href,t[s]||new Promise(t=>{if("document"in self){const e=document.createElement("script");e.src=s,e.onload=t,document.head.appendChild(e)}else e=s,importScripts(s),t()}).then(()=>{let e=t[s];if(!e)throw new Error(`Module ${s} didn’t register its module`);return e}));self.define=(n,i)=>{const o=e||("document"in self?document.currentScript.src:"")||location.href;if(t[o])return;let r={};const c=e=>s(e,o),u={module:{uri:o},exports:r,require:c};t[o]=Promise.all(n.map(e=>u[e]||c(e))).then(e=>(i(...e),r))}}define(["./workbox-e22bfc60"],function(e){"use strict";self.addEventListener("message",e=>{e.data&&"SKIP_WAITING"===e.data.type&&self.skipWaiting()}),e.registerRoute(({request:e})=>"navigate"===e.mode,new e.NetworkFirst({cacheName:"pages",plugins:[new e.ExpirationPlugin({maxEntries:50})]}),"GET")});
+if (!self.define) {
+  let e, t = {};
+  const s = (
+    s,
+    n,
+  ) => (s = new URL(s + ".js", n).href,
+    t[s] || new Promise((t) => {
+      if ("document" in self) {
+        const e = document.createElement("script");
+        e.src = s, e.onload = t, document.head.appendChild(e);
+      } else e = s, importScripts(s), t();
+    }).then(() => {
+      let e = t[s];
+      if (!e) throw new Error(`Module ${s} didn’t register its module`);
+      return e;
+    }));
+  self.define = (n, i) => {
+    const o = e || ("document" in self ? document.currentScript.src : "") ||
+      location.href;
+    if (t[o]) return;
+    let r = {};
+    const c = (e) => s(e, o),
+      u = { module: { uri: o }, exports: r, require: c };
+    t[o] = Promise.all(n.map((e) => u[e] || c(e))).then((e) => (i(...e), r));
+  };
+}
+define(["./workbox-e22bfc60"], function (e) {
+  "use strict";
+  self.addEventListener("message", (e) => {
+    e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting();
+  }),
+    e.registerRoute(
+      ({ request: e }) => "navigate" === e.mode,
+      new e.NetworkFirst({
+        cacheName: "pages",
+        plugins: [new e.ExpirationPlugin({ maxEntries: 50 })],
+      }),
+      "GET",
+    );
+});
 //# sourceMappingURL=sw.js.map
