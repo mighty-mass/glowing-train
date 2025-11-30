@@ -1,7 +1,0 @@
-{
-  "databaseURL": "https://Marco-Massetti-s-workspace-m4tj2d.eu-west-1.xata.sh/db/glowing-train",
-  "codegen": {
-    "output": "xata.ts",
-    "moduleType": "deno"
-  }
-}
