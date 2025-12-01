@@ -35,6 +35,8 @@
     "npm:@prefresh/vite@^2.4.8": "2.4.11_preact@10.27.2_vite@7.2.4__@types+node@24.2.0__picomatch@4.0.3_@types+node@24.2.0",
     "npm:@tailwindcss/vite@^4.1.12": "4.1.17_vite@7.2.4__@types+node@24.2.0__picomatch@4.0.3_@types+node@24.2.0",
     "npm:@types/node@*": "24.2.0",
+    "npm:@types/react-dom@^19.2.3": "19.2.3_@types+react@19.2.7",
+    "npm:@types/react@^19.2.7": "19.2.7",
     "npm:esbuild-wasm@~0.25.11": "0.25.12",
     "npm:esbuild@0.25.7": "0.25.7",
     "npm:esbuild@~0.25.5": "0.25.7",
@@ -766,6 +768,18 @@
         "undici-types"
       ]
     },
+    "@types/react-dom@19.2.3_@types+react@19.2.7": {
+      "integrity": "sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==",
+      "dependencies": [
+        "@types/react"
+      ]
+    },
+    "@types/react@19.2.7": {
+      "integrity": "sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==",
+      "dependencies": [
+        "csstype"
+      ]
+    },
     "baseline-browser-mapping@2.8.32": {
       "integrity": "sha512-OPz5aBThlyLFgxyhdwf/s2+8ab3OvT7AdTNvKHBwpXomIYeXqpUUuT8LrdtxZSsWJ4R4CU1un4XGh5Ez3nlTpw==",
       "bin": true
@@ -786,6 +800,9 @@
     },
     "convert-source-map@2.0.0": {
       "integrity": "sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg=="
+    },
+    "csstype@3.2.3": {
+      "integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="
     },
     "debug@4.4.3": {
       "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
@@ -1102,6 +1119,8 @@
       "jsr:@fresh/plugin-vite@^1.0.8",
       "npm:@preact/signals@^2.5.0",
       "npm:@tailwindcss/vite@^4.1.12",
+      "npm:@types/react-dom@^19.2.3",
+      "npm:@types/react@^19.2.7",
       "npm:preact@^10.27.2",
       "npm:tailwindcss@^4.1.10",
       "npm:types@~0.1.1",

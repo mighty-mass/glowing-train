@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silverback Training</title>
+  <style>
+    @font-face {
+      font-family: 'Kopimax';
+      src: url('/fonts/Kopimax.otf') format('opentype');
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      font-family: "Kopimax", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .splash-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+    }
+    .logo {
+      width: 240px;
+      height: 240px;
+    }
+    .title {
+      font-size: 2.6rem;
+      font-weight: bold;
+      text-align: center;
+      color: #171717;
+      line-height: 1.1;
+    }
+    .progress-bar-container {
+      width: 280px;
+      height: 12px;
+      background-color: #e5e5e5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background-color: #171216;
+      border-radius: 4px;
+      animation: fill-progress 1.5s ease-out forwards;
+    }
+    @keyframes fill-progress {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash-container">
+    <img src="/logo.svg" alt="SilverBack Training Logo" class="logo">
+    <h1 class="title">
+      SilverBack<br>Training
+    </h1>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+  <script>
+    const progressBar = document.querySelector('.progress-bar');
+    // Start a fake progress animation
+    progressBar.style.transition = 'width 1.5s ease-out';
+    progressBar.style.width = '90%';
+
+    window.addEventListener('message', (event) => {
+      if (event.data === 'loading-done') {
+        // When we get the message, fill the bar completely
+        progressBar.style.transition = 'width 0.2s ease-in';
+        progressBar.style.width = '100%';
+      }
+    });
+  </script>
+</body>
+</html>

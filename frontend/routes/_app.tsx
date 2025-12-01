@@ -1,13 +1,18 @@
 import { define } from "../utils.ts";
+import { useEffect, useRef } from "react";
 
 export default define.page(function App({ Component }: { Component: any }) {
   return (
     <html>
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="icons/apple-icon-180.png" />
+        <link rel="stylesheet" href="/styles.css" />
+        <link
+          rel="apple-touch-icon"
+          href="icons/apple-icon-180.png"
+        />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
 

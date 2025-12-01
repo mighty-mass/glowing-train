@@ -11,6 +11,8 @@
   "exclude": ["**/_fresh/*"],
   "imports": {
     "@/": "./",
+    "@types/react": "npm:@types/react@^19.2.7",
+    "@types/react-dom": "npm:@types/react-dom@^19.2.3",
     "fresh": "jsr:@fresh/core@^2.2.0",
     "preact": "npm:preact@^10.27.2",
     "@preact/signals": "npm:@preact/signals@^2.5.0",
