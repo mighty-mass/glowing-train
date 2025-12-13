@@ -15,7 +15,7 @@ const isSameDay = (d1: Date, d2: Date) =>
 const generateDates = () => {
   const today = new Date();
   const dates = [];
-  for (let i = -10; i <= 10; i++) {
+  for (let i = -4; i <= 4; i++) {
     const newDate = new Date(today);
     newDate.setDate(today.getDate() + i);
     dates.push(newDate);
@@ -33,18 +33,20 @@ export default function HorizontalCalendar() {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    // Find the actual button element, skipping the spacer
+    // Find the button element directly (no spacer)
     const dateIndex = dateArray.findIndex((d) => isSameDay(d, date));
     if (dateIndex > -1) {
-      const dateElement = container.children[dateIndex + 1] as HTMLElement; // +1 to account for spacer
+      const dateElement = container.children[dateIndex] as HTMLElement;
       if (dateElement) {
-        const containerWidth = container.offsetWidth;
-        const elementWidth = dateElement.offsetWidth;
-        const scrollLeft =
-          dateElement.offsetLeft - containerWidth / 2 + elementWidth / 2;
+        // Compute target based on current scroll and element position in viewport
+        const containerRect = container.getBoundingClientRect();
+        const elementRect = dateElement.getBoundingClientRect();
+        const offsetWithinContainer = elementRect.left - containerRect.left;
+        const targetLeft =
+          container.scrollLeft + offsetWithinContainer - (container.clientWidth / 2 - dateElement.offsetWidth / 2);
 
         container.scrollTo({
-          left: scrollLeft,
+          left: targetLeft,
           behavior: smooth ? "smooth" : "auto",
         });
       }
@@ -53,31 +55,41 @@ export default function HorizontalCalendar() {
 
   // Scroll to today's date on initial component mount
   useEffect(() => {
-    // A small delay ensures the layout is stable before we calculate scroll
-    setTimeout(() => scrollToDate(new Date(), false), 50);
+    // Multiple attempts to ensure scroll happens after layout is complete
+    const scrollToToday = () => scrollToDate(selectedDate.value, false);
+    
+    setTimeout(scrollToToday, 0);
+    setTimeout(scrollToToday, 100);
+    setTimeout(scrollToToday, 300);
   }, []);
 
   // Scroll to the selected date whenever it changes
   useEffect(() => {
-    scrollToDate(selectedDate.value);
+    scrollToDate(selectedDate.value, true);
   }, [selectedDate.value]);
+
+  // Re-center on viewport resize (e.g., device rotation or window change)
+  useEffect(() => {
+    const onResize = () => scrollToDate(selectedDate.value, false);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   return (
     <div
       class="w-full relative"
       style={{
         maskImage:
-          "linear-gradient(to right, transparent, black 25%, black 75%, transparent)",
+          "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
         WebkitMaskImage:
-          "linear-gradient(to right, transparent, black 25%, black 75%, transparent)",
+          "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
       }}
     >
       <div
         ref={scrollContainerRef}
-        class="overflow-x-auto py-4 no-scrollbar flex items-center space-x-4"
+        class="overflow-x-scroll py-4 no-scrollbar flex items-center gap-3"
+        style={{ scrollSnapType: "x mandatory" }}
       >
-        {/* Spacer element to allow first item to be centered */}
-        <div class="flex-shrink-0 w-[calc(50%-2.5rem)]" />
         {dateArray.map((date, index) => {
           const isSelected = isSameDay(date, selectedDate.value);
           const dayName = formatDate(date, { weekday: "short" });
@@ -86,24 +98,27 @@ export default function HorizontalCalendar() {
           return (
             <button
               key={index}
-              onClick={() => (selectedDate.value = date)}
-              class={`flex flex-col items-center justify-center rounded-lg transition-all duration-300 flex-shrink-0
+              onClick={() => {
+                selectedDate.value = date;
+              }}
+              class={`flex flex-col items-center justify-center rounded-lg transition-all duration-200 flex-shrink-0
                 ${
                   isSelected
-                    ? "bg-neutral-800 text-white shadow-lg w-20 h-24"
-                    : "bg-neutral-100 text-neutral-700 w-16 h-20"
+                    ? "bg-neutral-800 text-white shadow-lg w-20 h-24 scale-110"
+                    : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 w-16 h-20"
                 }`}
+              style={{ scrollSnapAlign: "center" }}
             >
               <span
-                class={`font-medium transition-all duration-300 ${
-                  isSelected ? "text-base" : "text-sm"
+                class={`font-medium transition-all duration-200 ${
+                  isSelected ? "text-base" : "text-xs"
                 }`}
               >
                 {dayName}
               </span>
               <span
-                class={`font-bold transition-all duration-300 ${
-                  isSelected ? "text-3xl" : "text-2xl"
+                class={`font-bold transition-all duration-200 ${
+                  isSelected ? "text-3xl mt-1" : "text-2xl"
                 }`}
               >
                 {dayNumber}
@@ -111,8 +126,6 @@ export default function HorizontalCalendar() {
             </button>
           );
         })}
-        {/* Spacer element to allow last item to be centered */}
-        <div class="flex-shrink-0 w-[calc(50%-2.5rem)]" />
       </div>
     </div>
   );

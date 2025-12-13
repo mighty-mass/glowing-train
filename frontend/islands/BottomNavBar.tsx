@@ -22,7 +22,7 @@ function NavItem({
   );
 }
 
-export default function BottomNavBar() {
+export default function BottomNavBar({ currentPath }: { currentPath?: string }) {
   // Placeholder icons
   const HomeIcon = (
     <svg
@@ -76,9 +76,9 @@ export default function BottomNavBar() {
   return (
     <nav class="fixed bottom-0 left-0 right-0 bg-black z-50 pb-safe-bottom">
       <div class="flex justify-around items-start max-w-screen-sm mx-auto">
-        <NavItem href="#" icon={HomeIcon} label="Home" active />
-        <NavItem href="#" icon={CalendarIcon} label="Plan" />
-        <NavItem href="#" icon={ProfileIcon} label="Profile" />
+        <NavItem href="/" icon={HomeIcon} label="Home" active={currentPath === "/"} />
+        <NavItem href="/plan" icon={CalendarIcon} label="Plan" active={currentPath === "/plan"} />
+        <NavItem href="/profile" icon={ProfileIcon} label="Profile" active={currentPath === "/profile"} />
       </div>
     </nav>
   );
