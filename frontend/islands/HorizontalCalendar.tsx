@@ -15,7 +15,7 @@ const isSameDay = (d1: Date, d2: Date) =>
 const generateDates = () => {
   const today = new Date();
   const dates = [];
-  for (let i = -4; i <= 4; i++) {
+  for (let i = -10; i <= 10; i++) {
     const newDate = new Date(today);
     newDate.setDate(today.getDate() + i);
     dates.push(newDate);
